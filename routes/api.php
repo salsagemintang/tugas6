@@ -16,3 +16,15 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('register', 'UserController@register');
+Route::post('login', 'UserController@login');
+
+Route::get('user', 'UserController@getAuthenticatedUser')->middleware('jwt.verify');
+Route::get('/',function(){ return Auth::user()->petugas;})->middleware('jwt.verify');
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+Route::post('register', 'petugasController@register');
+Route::post('login', 'petugasController@login');
