@@ -28,3 +28,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::post('register', 'petugasController@register');
 Route::post('login', 'petugasController@login');
+
+//buku
+Route::post('/simpan_buku','bukucontroller@store')->middleware('jwt.verify');
+Route::put('/ubah_buku/{id}','bukucontroller@update')->middleware('jwt.verify');
+Route::delete('/hapus_buku/{id}','bukucontroller@destroy')->middleware('jwt.verify');
+Route::get('/tampil_buku','bukucontroller@tampil_buku')->middleware('jwt.verify');
+
+//anggota
+Route::post('/simpan_anggota','anggotacontroller@store')->middleware('jwt.verify');
+Route::put('/ubah_anggota/{id}','anggotacontroller@update')->middleware('jwt.verify');
+Route::delete('/hapus_anggota/{id}','anggotacontroller@destroy')->middleware('jwt.verify');
+Route::get('/tampil_anggota','anggotacontroller@tampil_anggota')->middleware('jwt.verify');
